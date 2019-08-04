@@ -19,6 +19,10 @@
 </template>
 
 <script>
+    import service from '@/services'
+	import { mapState, mapMutations } from 'vuex';
+
+
 	export default {
 		data() {
 			return {
@@ -26,7 +30,10 @@
 				lists: [],
 				fetchPageNum: 1
 			}
-		},
+        },
+        computed: mapState({
+
+        }),
 		onLoad() {
 			this.getData();
 			uni.getProvider({
@@ -123,7 +130,7 @@
 			},
 			goDetail(e) {
 				uni.navigateTo({
-					url: '../detail/detail?data=' + encodeURIComponent(JSON.stringify(e))
+					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))
 				})
 			},
 			share(e) {

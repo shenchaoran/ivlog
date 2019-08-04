@@ -1,14 +1,14 @@
 {
 	"pages": [
 		{
-			"path": "pages/home/index",
+			"path": "pages/video/list",
 			"style": {
 				"navigationBarTitleText": "最热",
 				"enablePullDownRefresh": true
 			}
 		},
 		{
-			"path": "pages/detail/index",
+			"path": "pages/video/detail",
 			"style": {
 				"navigationBarTitleText": "详情",
 				"navigationBarBackgroundColor": "#000000",
@@ -29,9 +29,31 @@
 					}
 				}
 			}
-		},
+        },
         {
-            "path" : "pages/my/index",
+            "path": "pages/shoot/sample",
+            "style": {
+				"navigationBarTitleText": "拍摄样片",
+				"navigationBarBackgroundColor":"#000000",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+                }
+            }
+        },
+        {
+            "path": "pages/shoot/formal",
+            "style": {
+				"navigationBarTitleText": "拍摄正片",
+				"navigationBarBackgroundColor":"#000000",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+                }
+            }
+        },
+        {
+            "path" : "pages/video/my",
             "style" : {
 				"navigationBarTitleText": "我的",
 				"navigationBarBackgroundColor":"#000000",
@@ -42,13 +64,13 @@
 			}
         },
 		{
-			"path": "pages/login/index",
+			"path": "pages/auth/login",
 			"style": {
 				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path": "pages/register/index",
+			"path": "pages/auth/register",
 			"style": {
 				"navigationBarTitleText": ""
 			}
@@ -61,13 +83,19 @@
 		"backgroundColor": "#212131",
 		"list": [
 			{
-				"pagePath":"pages/home/index",
+				"pagePath":"pages/video/list",
 				"iconPath": "static/img/tabbar/home.png",
 				"selectedIconPath": "static/img/tabbar/home-active.png",
 				"text":"首页"
 			},
 			{
-				"pagePath":"pages/my/index",
+				"pagePath":"pages/shoot/sample",
+				"iconPath": "static/img/tabbar/add.png",
+				"selectedIconPath": "static/img/tabbar/add-active.png",
+				"text":"拍摄样片"
+			},
+			{
+				"pagePath":"pages/video/my",
 				"iconPath":"static/img/tabbar/me.png",
 				"selectedIconPath":"static/img/tabbar/me-active.png",
 				"text":"我的"
