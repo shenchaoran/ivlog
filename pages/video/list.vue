@@ -3,7 +3,9 @@
 		<block v-for="list in lists" :key="list.id">
 			<view class="row">
 				<view class="card card-list2" v-for="item in list.data" @click="goDetail(item)" :key="item.img_src">
-					<image class="card-img card-list2-img" :src="item.img_src"></image>
+					<!-- <image class="card-img card-list2-img" :src="item.img_src"></image> -->
+                    <video id="myVideo" :src="item.video"
+    				 @error="videoErrorCallback" controls :poster="item.pic"></video>
 					<text class="card-num-view card-list2-num-view">{{item.img_num}}P</text>
 					<view class="card-bottm row">
 						<view class="car-title-view row">
@@ -14,28 +16,48 @@
 				</view>
 			</view>
 		</block>
-		<text class="loadMore">加载中...</text>
 	</view>
 </template>
 
 <script>
-    import service from '@/services'
-	import { mapState, mapMutations } from 'vuex';
-
+	import { mapState, mapMutations, mapActions } from 'vuex';
 
 	export default {
 		data() {
 			return {
-				refreshing: false,
+                loading: true,
+                error: '',
 				lists: [],
-				fetchPageNum: 1
+                _page: 1,
+                _limit: 5,
 			}
         },
         computed: mapState({
-
+            list: state => state.video.list,
+            loading: state => state.video.loading,
+            error: state => state.video.error,
         }),
+        watch: {
+            loading: (newV, oldV) => {
+                if(newV === false)
+                    uni.stopPullDownRefresh();
+            },
+            error: (newV, oldV) => {
+                if(newV) {
+                    uni.showToast({
+                        title: '加载失败',
+                        icon: 'none',
+                    });
+                }
+                uni.stopPullDownRefresh();
+            },
+        },
 		onLoad() {
-			this.getData();
+            console.log(this.data, this._page, this._limit)
+			this.getList({
+                _page: this._page, 
+                _limit: this._limit
+            });
 			uni.getProvider({
 				service: 'share',
 				success: (e) => {
@@ -72,62 +94,14 @@
 		},
 		onPullDownRefresh() {
 			console.log('下拉刷新');
-			this.refreshing = true;
-			this.getData();
+			this.loading = true;
+			this.getList();
 		},
 		onReachBottom() {
-			this.getData();
+			this.getList();
 		},
 		methods: {
-			getData() {
-				uni.request({
-					url: this.$serverUrl + '/api/picture/posts.php?page=' + (this.refreshing ? 1 : this.fetchPageNum) +
-						'&per_page=10',
-					success: (ret) => {
-						if (ret.statusCode !== 200) {
-							console.log('请求失败:', ret)
-						} else {
-							if (this.refreshing && ret.data[0].id === this.lists[0][0].id) {
-								uni.showToast({
-									title: '已经最新',
-									icon: 'none',
-								});
-								this.refreshing = false;
-								uni.stopPullDownRefresh();
-								return;
-							}
-							let list = {
-									id: '',
-									data: []
-								},
-								lists = [],
-								data = ret.data;
-							for (let i = 0, length = data.length; i < length; i++) {
-								let index = Math.floor(i / 2);
-								list.id = 'list' + i;
-								list.data.push(data[i]);
-								if (i % 2 == 1) {
-									lists.push(list);
-									list = {
-										id: '',
-										data: []
-									};
-								}
-							}
-							console.log('得到lists', lists);
-							if (this.refreshing) {
-								this.refreshing = false;
-								uni.stopPullDownRefresh()
-								this.lists = lists;
-								this.fetchPageNum = 2;
-							} else {
-								this.lists = this.lists.concat(lists);
-								this.fetchPageNum += 1;
-							}
-						}
-					}
-				});
-			},
+            ...mapActions(['getList']),
 			goDetail(e) {
 				uni.navigateTo({
 					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))

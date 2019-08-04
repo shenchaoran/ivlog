@@ -1,2 +1,6 @@
 /unpackage
+/node_modules
 **/.DS_Store
+
+/mock/snapshots
+/mock/static

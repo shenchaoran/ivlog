@@ -54,9 +54,12 @@ export default {
 		}
 		options.baseUrl = options.baseUrl || this.config.baseUrl
 		options.dataType = options.dataType || this.config.dataType
-		options.url = options.baseUrl + options.url
 		options.data = options.data || {}
-		options.method = options.method || this.config.method
+        options.method = options.method || this.config.method
+        
+        if (this.interceptor.request) {
+            this.interceptor.request(options)
+        }
 		//TODO 加密数据
 		
 		//TODO 数据签名
@@ -72,11 +75,6 @@ export default {
 			options.complete = (response) => {
 				let statusCode = response.statusCode
 				response.config = _config
-				if (process.env.NODE_ENV === 'development') {
-					if (statusCode === 200) {
-						console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data))
-					}
-				}
 				if (this.interceptor.response) {
 					let newResponse = this.interceptor.response(response)
 					if (newResponse) {
@@ -93,22 +91,10 @@ export default {
 			}
 
 			_config = Object.assign({}, this.config, options)
-			_config.requestId = new Date().getTime()
-
-			if (this.interceptor.request) {
-				this.interceptor.request(_config)
-			}
-			
+            _config.url = _config.baseUrl + _config.url
+			_config.requestId = new Date().getTime()			
 			// 统一的请求日志记录
 			_reqlog(_config)
-
-			if (process.env.NODE_ENV === 'development') {
-				console.log("【" + _config.requestId + "】 地址：" + _config.url)
-				if (_config.data) {
-					console.log("【" + _config.requestId + "】 参数：" + JSON.stringify(_config.data))
-				}
-			}
-
 			uni.request(_config);
 		});
 	},
