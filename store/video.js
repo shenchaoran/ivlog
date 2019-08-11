@@ -13,10 +13,10 @@ export default {
         getList: async ({commit, dispatch, state}, {_page, _limit}) => {
             try {
                 state.loading = true
-                let res = await api.getList({_page, _limit})
-                state.list = res
+                let {data: {code, msg, data}} = await api.getList({_page, _limit})
+                state.list = data
                 state.loading = false
-                console.log(res)
+                console.log(code, msg)
             }
             catch(e) {
                 console.error(e)

@@ -1,0 +1,29 @@
+video:
+
+class Video {
+    id: String,
+    authorId: String,
+    video: String,    
+    pic: String,
+    like: Number,
+    videoName: String,
+    desc: String,
+    time: Number,   ms
+}
+
+class Music {
+    id: String,
+    music: String,
+    musicName: String,
+    artist: String,
+    desc: String,
+}
+
+class User {
+    wxid: String,
+    username: String,
+    avatar: String,     base64
+    likeList: String[],     videoId[]
+}
+
+路由前缀：http://129.211.60.18/ivlog/api/

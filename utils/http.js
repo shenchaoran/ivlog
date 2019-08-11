@@ -82,7 +82,7 @@ export default {
 					}
 				}
 				// 统一的响应日志记录
-				_reslog(response)
+				// _reslog(response)
 				if (statusCode === 200) { //成功
 					resolve(response);
 				} else {
@@ -94,7 +94,7 @@ export default {
             _config.url = _config.baseUrl + _config.url
 			_config.requestId = new Date().getTime()			
 			// 统一的请求日志记录
-			_reqlog(_config)
+			// _reqlog(_config)
 			uni.request(_config);
 		});
 	},
