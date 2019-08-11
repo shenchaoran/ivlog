@@ -1,0 +1,102 @@
+response: {
+    code: 0 | Number,
+    data: Object,
+    msg: String,
+}
+
+
+
+/login
+    req: {wxid}
+    res: {code,msg, data:{sessionId}}
+
+/videos: 首页列表
+    GET:
+        req: {_limit, _page}            每页数量, 页码
+        res: {
+            code, msg, 
+            data: {
+                count: Number,
+                list: Video[],
+            }
+        }
+    POST:
+        headers: {
+            content-type: 'multipart/form-data'
+        }
+        req: {
+            file: File,
+            wxid: String,
+            sessionId: String,
+            musicId?: String,
+        }
+        res: {
+            code, msg, Video,
+        }
+
+/videos/:videoId
+    GET: 
+        req: {sessionId}
+        res: {
+            code, msg, 
+            data: {
+                Video, 
+                author: {
+                    avatar: String,
+                    username: String,
+                }, 
+                isliked: Boolean
+            }
+        }
+
+/videos/recommand/:videoId          返回9个
+    GET:
+        req: {sessionId}
+        res: {
+            code, msg, 
+            data: {
+                count: Number,
+                list: Video[],
+            }
+        }
+
+/videos/like/:videoId
+    GET:
+        req: {sessionId}
+        res: {code, msg}
+
+/videos/myVideos
+    GET:
+        req: {_limit, _page, sessionId}            每页数量, 页码
+        res: {
+            code, msg, 
+            data: {
+                count: Number,
+                list: Video[],
+            }
+        }
+
+/musics
+    GET:
+        req: {sessionId}
+        res: {
+            code, msg,
+            data: {
+                count: Number,
+                list: Music[],
+            }
+        }
+
+/sample
+    POST
+        req: {
+            sessionId,
+            file
+        }
+        res: {
+            code, msg, 
+            data: {
+                count: Number,
+                list: Video[],
+            }
+        }

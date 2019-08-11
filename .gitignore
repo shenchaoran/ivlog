@@ -1,4 +1,9 @@
 /unpackage
 **/.DS_Store
 node_modules
+**/.DS_Store
+
+/mock/snapshots
+/mock/static
+
 backend/public
