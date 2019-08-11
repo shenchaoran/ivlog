@@ -1,19 +1,9 @@
 <template>
-	<view class="index">
-		<swiper @change="swpierChange" :style="{height:screenHeight + 'px'}">
-			<swiper-item v-for="(value,index) in data" :key="value" @click="preImg(index)">
-				<image :src="value" mode="widthFix"></image>
-			</swiper-item>
-		</swiper>
-		<!-- #ifndef H5 -->
-		<view class="detail-btn-view">
-			<view class="download" @click="download"></view>
-			<!-- #ifdef APP-PLUS -->
-			<view v-if="showBtn" class="setting" @click="setting">设为壁纸</view>
-			<!-- #endif -->
-			<view class="collect" @click="collect"></view>
-		</view>
-		<!-- #endif -->
+	<view class="container">
+        <video class='video' 
+            @error="videoErrorCallback" controls 
+            :src="'http://localhost:1111/ivlog/api/public/' + video.video"
+            :poster="'http://localhost:1111/ivlog/api/public/' + video.pic"></video>
 	</view>
 </template>
 
@@ -21,115 +11,17 @@
 	export default {
 		data() {
 			return {
-				imgShow: false,
-				index: 0,
-				showBtn: false,
-				screenHeight: 0,
-				imgLength: 0,
-				providerList: [],
-				data: [],
-				detailDec: ""
+				video: null,
 			}
 		},
-		onLoad(e) {
-			// #ifdef APP-PLUS
-			if (plus.os.name === 'Android') {
-				this.showBtn = true;
-			}
-			// #endif
-			this.screenHeight = uni.getSystemInfoSync().windowHeight;
-			this.detailDec = e.data;
-			let data = JSON.parse(decodeURIComponent(e.data));
-			this.imgLength = data.img_num;
-			this.data.push(data.img_src);
-			this.getData(data.id);
-			uni.setNavigationBarTitle({
-				title: "1/" + this.imgLength
-			});
-			// 获取分享通道
-			uni.getProvider({
-				service: "share",
-				success: (e) => {
-					let data = []
-					for (let i = 0; i < e.provider.length; i++) {
-						switch (e.provider[i]) {
-							case 'weixin':
-								data.push({
-									name: '分享到微信好友',
-									id: 'weixin'
-								})
-								data.push({
-									name: '分享到微信朋友圈',
-									id: 'weixin',
-									type: 'WXSenceTimeline'
-								})
-								break;
-							case 'qq':
-								data.push({
-									name: '分享到QQ',
-									id: 'qq'
-								})
-								break;
-							default:
-								break;
-						}
-					}
-					this.providerList = data;
-				},
-				fail: (e) => {
-					console.log("获取登录通道失败", e);
-				}
-			});
-		},
-		onShareAppMessage() {
-			return {
-				title: '欢迎使用uni-app看图模板',
-				path: '/pages/detail/detail?data=' + this.detailDec,
-				imageUrl: this.data[this.index]
-			}
-		},
-		onNavigationBarButtonTap(e) {
-			if (e.index === 0) {
-				// #ifdef APP-PLUS
-				if (this.providerList.length === 0) {
-					uni.showModal({
-						title: '当前环境无分享渠道!',
-						showCancel: false
-					})
-					return;
-				}
-				let itemList = this.providerList.map(function(value) {
-					return value.name
-				})
-				uni.showActionSheet({
-					itemList: itemList,
-					success: (res) => {
-						uni.share({
-							provider: this.providerList[res.tapIndex].id,
-							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ?
-								'WXSenceTimeline' : 'WXSceneSession',
-							type: 0,
-							title: 'uni-app模版',
-							summary: '欢迎使用uni-app模版',
-							imageUrl: this.data[this.index],
-							href: 'https://uniapp.dcloud.io',
-							success: (res) => {
-								console.log('success:' + JSON.stringify(res));
-							},
-							fail: (e) => {
-								uni.showModal({
-									content: e.errMsg,
-									showCancel: false
-								})
-							}
-						});
-					}
-				});
-				// #endif
-				// #ifdef H5
-				this.collect();
-				// #endif
-			}
+		onLoad(option) {
+            let {data} = option
+            try {
+                this.video = JSON.parse(data)
+            }
+            catch(e) {
+                e
+            }
 		},
 		methods: {
 			download() {
@@ -254,26 +146,12 @@
 </script>
 
 <style>
-	page {
-		background-color: #000;
-		height: 100%;
-	}
-
-	swiper {
-		flex: 1;
-		width: 750upx;
-		background-color: #000;
-		display: flex;
-		flex-direction: column;
-	}
-
-	swiper-item {
-		display: flex;
-		align-items: center;
-	}
-
-	image {
-		width: 750upx;
-		height: 1125upx;
-	}
+    .container {
+        width: 100%;
+        height: 100%;
+    }
+	.video {
+        width: 100%;
+        height: 100%;
+    }
 </style>

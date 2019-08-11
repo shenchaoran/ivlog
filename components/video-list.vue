@@ -1,10 +1,13 @@
 <template>
 	<div class='container'>
-        <view class="video-item" v-for="item in list" @click="goDetail(item)" :key="item.id">
+        <view class="video-item" v-for="item in list" :key="item.id">
             <!-- <image class="card-img card-list2-img" :src="item.img_src"></image> -->
             <!-- <text>{{item.id}}</text> -->
-            <video class='video' :src="item.video"
-                @error="videoErrorCallback" controls :poster="item.pic"></video>
+            <video class='video' 
+                @error="videoErrorCallback" controls 
+                :src="'http://localhost:1111/ivlog/api/public/' + item.video"
+                :poster="'http://localhost:1111/ivlog/api/public/' + item.pic"
+                @click="goDetail(item)"></video>
             <!-- <text class="card-num-view card-list2-num-view">{{item.img_num}}</text> -->
             <!-- <view class="card-bottm row">
                 <view class="car-title-view row">
@@ -34,9 +37,9 @@
             }
         },
 		methods: {
-			goDetail(e) {
+			goDetail(v) {
 				uni.navigateTo({
-					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))
+					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(v))
 				})
             },
             videoErrorCallback() {

@@ -1,5 +1,5 @@
 <template>
-	<view class="index">
+	<view class="container">
         <VideoList :list='list'></VideoList>
         <!-- <block v-for="item in list" :key='item.id'>
             <text>{{item.id}}</text>
@@ -90,4 +90,9 @@
 		display: flex;
 		flex: 1;
 	}
+
+	.container {
+        width: 100%;
+        height: 100%;
+    }
 </style>

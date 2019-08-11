@@ -38,7 +38,7 @@ app.use((req, res, next) => {
     }
 })
 
-app.use('/ivlog/api/public', express.static(path.join(__dirname, 'public')))
+router.use('/public', express.static(path.join(__dirname, 'public')))
 router.use('/videos', videoRouter)
 router.use('/musics', musicRouter)
 router.use('/user', userRouter)
