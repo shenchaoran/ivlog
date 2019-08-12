@@ -4,30 +4,15 @@
 			"path": "pages/video/list",
 			"style": {
 				"navigationBarTitleText": "最热",
-				"enablePullDownRefresh": true
+                "enablePullDownRefresh": true,
+                "backgroundColor": "#000000"
 			}
 		},
 		{
 			"path": "pages/video/detail",
 			"style": {
-				"navigationBarTitleText": "详情",
 				"navigationBarBackgroundColor": "#000000",
-				"backgroundColor": "#000000",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"type": "share"
-						}]
-					}
-				},
-				"h5": {
-					"titleNView": {
-						"buttons": [{
-							"type": "favorite"
-						}]
-					}
-				}
+				"backgroundColor": "#000000"
 			}
         },
         {
@@ -75,7 +60,10 @@
 				"navigationBarTitleText": ""
 			}
 		}
-	],
+    ],
+    "globalStyle": {
+        "backgroundColor": "#000000"
+    },
 	"tabBar": {
 		"color": "#FFFFFF",
 		"selectedColor": "#ffffff",

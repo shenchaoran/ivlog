@@ -5,11 +5,13 @@ const _ = require('lodash')
 const router = express.Router()
 router.route('/')
     .get((req, res, next) => {
-        res.json({
-            code: 200,
-            msg: 'success',
-            data: db.videos,
-        })
+        setTimeout(() => {
+            res.json({
+                code: 200,
+                msg: 'success',
+                data: db.videos.slice(0, 8),
+            })
+        }, 2000);
     })
 
 router.route('/recommand/:id')

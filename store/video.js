@@ -1,5 +1,6 @@
 import api from '@/api'
 import http from '@/utils/http'
+import * as _ from 'lodash'
 
 export default {
     state: {
@@ -14,7 +15,7 @@ export default {
             try {
                 state.loading = true
                 let {data: {code, msg, data}} = await api.getList({_page, _limit})
-                state.list = data
+                state.list = _.concat(state.list, data)
                 state.loading = false
                 console.log(code, msg)
             }
@@ -45,5 +46,13 @@ export default {
             }
         }
     },
-    mutations: {},
+    mutations: {
+        refresh: (state, obj) => {
+            state.list = []
+            state.loading = true
+        },
+        setLoading: (state, obj) => {
+            state.loading = true
+        }
+    },
 }

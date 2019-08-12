@@ -1,21 +1,45 @@
 <template>
 	<div class='container'>
-        <view class="video-item" v-for="item in list" :key="item.id">
-            <!-- <image class="card-img card-list2-img" :src="item.img_src"></image> -->
-            <!-- <text>{{item.id}}</text> -->
-            <video class='video' 
-                @error="videoErrorCallback" controls 
-                :src="'http://localhost:1111/ivlog/api/public/' + item.video"
-                :poster="'http://localhost:1111/ivlog/api/public/' + item.pic"
-                @click="goDetail(item)"></video>
-            <!-- <text class="card-num-view card-list2-num-view">{{item.img_num}}</text> -->
-            <!-- <view class="card-bottm row">
-                <view class="car-title-view row">
-                    <text class="card-title card-list2-title">{{item.title}}</text>
-                </view>
-                <view @click.stop="share(item)" class="card-share-view"></view>
-            </view> -->
-        </view>
+        <div class='left'>
+            <block v-for="(item, index) in list" :key="item.id">
+                <block v-if='index%2==0' class="video-item">
+                    <video class='video' 
+                        @error="videoErrorCallback" 
+                        :src="'http://localhost:1111/ivlog/api/public/' + item.video"
+                        :poster="'http://localhost:1111/ivlog/api/public/' + item.pic"
+                        :muted='true'
+                        :autoplay='false'
+                        :controls='false'
+                        :objectFit='"cover"'
+                        :loop='true'
+                        :show-fullscreen-btn='false'
+                        :show-progress='false'
+                        :show-play-btn='false'
+                        :enable-progress-gesture='false'
+                        @click="goDetail(item)"></video>
+                </block>
+            </block>
+        </div>
+        <div class='right'>
+            <block v-for="(item, index) in list" :key="item.id">
+                <block v-if='index%2==1' class="video-item">
+                    <video class='video' 
+                        @error="videoErrorCallback" 
+                        :src="'http://localhost:1111/ivlog/api/public/' + item.video"
+                        :poster="'http://localhost:1111/ivlog/api/public/' + item.pic"
+                        :muted='true'
+                        :autoplay='false'
+                        :controls='false'
+                        :objectFit='"cover"'
+                        :loop='true'
+                        :show-fullscreen-btn='false'
+                        :show-progress='false'
+                        :show-play-btn='false'
+                        :enable-progress-gesture='false'
+                        @click="goDetail(item)"></video>
+                </block>
+            </block>
+        </div>
     </div>
 </template>
 
@@ -52,14 +76,21 @@
 <style>
 	.container {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: row nowrap;
         width: 100%;
         height: 100%;
+        background: #000;
     }
-    .video-item {
-        width: 50%;
+    .left,
+    .right {
+        flex: 1 1 50%;
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 3px;
     }
     .video {
+        border-radius: 5px;
         width: 100%;
+        margin: 3px 0;
     }
 </style>
