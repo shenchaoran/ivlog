@@ -23,7 +23,7 @@
 		data() {
 			return {
                 _page: 1,
-                _limit: 5,
+                _limit: 10,
                 loadMore: 'more',
                 showLoadMore: 'none',
                 loadMoreText: {
@@ -61,32 +61,32 @@
             },
         },
 		onLoad() {
-            this.setLoading()
-            console.log(this.data, this._page, this._limit)
+            // this.setLoading()
+            console.log(this.$data._page, this.$data._limit)
 			this.getList({
-                _page: this._page, 
-                _limit: this._limit,
+                _page: this.$data._page, 
+                _limit: this.$data._limit,
             });
 		},
 		onPullDownRefresh() {
 			console.log('下拉刷新');
             this.refresh();
-            this._page = 0
+            this.$data._page = 0
             this.setLoading()
 			this.getList({
-                _page: this._page, 
-                _limit: this._limit,
+                _page: this.$data._page, 
+                _limit: this.$data._limit,
             });
 		},
 		onReachBottom() {
             console.log('onReachBottom')
             this.loadMore = 'loading'
             this.showLoadMore = 'flex'
-            this._page++
+            this.$data._page++
             this.setLoading()
             this.getList({
-                _page: this._page,
-                _limit: this._limit,
+                _page: this.$data._page,
+                _limit: this.$data._limit,
             })
 		},
 		methods: {

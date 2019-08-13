@@ -4,8 +4,11 @@
             @error="videoErrorCallback" controls 
             :muted='false'
             :autoplay='true'
-            :src="'http://localhost:1111/ivlog/api/public/' + video.video"
-            :poster="'http://localhost:1111/ivlog/api/public/' + video.pic"></video>
+            :show-center-play-btn='true'
+            :src="baseUrl + video.videoName"
+            :poster="baseUrl + video.cover">
+            <!-- <cover-view class='video-cover' @touchmove='onTouchMove'></cover-view> -->
+        </video>
 	</view>
 </template>
 
@@ -13,6 +16,7 @@
 	export default {
 		data() {
 			return {
+                baseUrl: 'http://129.211.60.18:3000/ivlog/api/public/',
 				video: null,
 			}
 		},
@@ -21,7 +25,7 @@
             try {
                 console.log('data:', data)
                 this.video = JSON.parse(data)
-                console.log('video: ', this.video)
+                console.log('video: ', this.video.videoName)
             }
             catch(e) {
                 e
@@ -30,7 +34,13 @@
 		methods: {
 			videoErrorCallback(e) {
                 console.log('videoError: ', e)
-            }
+            },
+            onPageScroll(e) {
+                console.log('onPageScroll')
+            },
+            onTouchMove(e) {
+                console.log('onTouchMove', e)
+            },
 		}
 	}
 </script>
@@ -88,5 +98,15 @@
 	.video {
         width: 100%;
         height: 100%;
+        position: relative;
+    }
+
+    .video-cover {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 10%;
+        bottom: 10%;
+        background: #fff;
     }
 </style>
