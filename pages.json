@@ -38,7 +38,37 @@
             }
         },
         {
-            "path" : "pages/video/my",
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "最热",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/detail/index",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"type": "share"
+						}]
+					}
+				},
+				"h5": {
+					"titleNView": {
+						"buttons": [{
+							"type": "favorite"
+						}]
+					}
+				}
+			}
+		},
+        {
+            "path" : "pages/my/index",
             "style" : {
 				"navigationBarTitleText": "我的",
 				"navigationBarBackgroundColor":"#000000",
@@ -49,13 +79,31 @@
 			}
         },
 		{
-			"path": "pages/auth/login",
+			"path": "pages/login/index",
 			"style": {
 				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path": "pages/auth/register",
+			"path": "pages/register/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/preShoot/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/shoot/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/checkVideo/index",
 			"style": {
 				"navigationBarTitleText": ""
 			}
