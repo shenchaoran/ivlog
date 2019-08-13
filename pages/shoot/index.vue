@@ -22,13 +22,17 @@
 				ifStartRecord: false,
 				timeStumb: 0,
 				timeLoop: '',
+				time:'',
 				ctx: {},
-				demoUrl: ''
+				demoUrl: '',
+				camera: false,
 			}
 		},
 		onLoad(option) {
+			if (option) {
+				this.demoUrl = option.demoUrl
+			}
 			this.ctx = wx.createCameraContext()
-			this.demoUrl = option.demoUrl
 			// console.log(this.ctx.startRecord)
 		},
 		methods: {
@@ -54,6 +58,8 @@
 										console.log('获取摄像头权限出错')
 									}
 								})
+							} else {
+								resolve()
 							}
 						}
 					})
@@ -96,16 +102,38 @@
 				
 				clearInterval(this.timeLoop)
 				
-				success: (res) => {
+				ctx.stopRecord({
 					
-					this.tempThumbPath = res.tempThumbPath
-					
-					this.tempVideoPath = res.tempVideoPath
-					
-					uni.navigateTo({
-						url: '/pages/checkVideo/index?tempThumbPath=this.tempThumbPath&tempVideoPath=this.tempVideoPath'
-					})
-				}
+					success: (res) => {
+						console.log('结束录制视频成功')
+						
+						console.log(res)
+						
+						console.log(res.tempThumbPath)
+						
+						console.log(res.tempVideoPath)
+						
+						
+						this.tempThumpath = res.tempThumbPath
+						
+						this.tempVideoPath = res.tempVideoPath
+						
+						this.camera = false
+						
+						this.ifStartRecord = false
+						
+						this.time = 0
+						
+						uni.navigateTo({
+							url: `/pages/checkVideo/index?tempVideoPath=${this.tempVideoPath}&demoUrl=${this.demoUrl}`
+						})
+					},
+					fail: (e) => {
+						console.log('结束录制视频失败')
+						console.log(e)
+					}
+				})
+				
 			}
 		}
 	}

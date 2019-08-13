@@ -30,7 +30,7 @@
 	
 	// import uniNoticeBar from "../components/uni-notice-bar.vue"
 	
-	import { uploadFile } from '../../utils.js'
+	import api from '../../api/index.js'
 	
 	export default {
 	components: {
@@ -51,7 +51,9 @@
         }
     },
 	onLoad() {
-		console.log(1)
+		console.log(1212121212)
+		console.log(api.uploadFile)
+		console.log(12121212)
 		// wx.showModal({
 		// 	title: 'dsahugfe'
 		// })
@@ -72,25 +74,42 @@
 			console.log(this.tempVideoPath)
 			console.log(8888)
 			if (this.tempVideoPath) {
-				const url =  'http://129.211.60.18/ivlog/api/sample'
+				const url =  'http://129.211.60.18:3000/ivlog/api/sample'
 				console.log('调用上传函数了')
-				uploadFile(url, this.tempVideoPath, 'tempVideoPath')
+				
+				uni.uploadFile({
+					url,
+					filePath: this.tempVideoPath,
+					name: 'video',
+					formData:{},
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes.data);
+					},
+					fail(err) {
+						console.log(err)
+					}
+				})
+				
+				// api.uploadFile(url, {
+				// 	name: 'video',
+				// 	video: this.tempVideoPath
+				// })
 				// uploadFile(url, this.tempThumbPath, 'tempThumbPath')
 				// .then(r => {
 				// 	console.log(r)
 				// 	return uploadFile(url, this.tempVideoPath, 'tempVideoPath')
 				// })
-				.then(r => {
-					console.log('上传成功')
-					console.log(r)
-					uni.navicatTo({
-						url: `pages/shoot/index?demoUrl=${r.demourl}`
-					})
-				})
-				.catch(e => {
-					console.log('上传失败')
-					console.log(e)
-				})	
+				// .then(r => {
+				// 	console.log('上传成功')
+				// 	console.log(r)
+				// 	uni.navicatTo({
+				// 		url: `pages/shoot/index?demoUrl=${r.demourl}`
+				// 	})
+				// })
+				// .catch(e => {
+				// 	console.log('上传失败')
+				// 	console.log(e)
+				// })	
 			} else {
 				console.log(this.ifNotice)
 				this.ifNotice = true

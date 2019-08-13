@@ -162,7 +162,7 @@
 		methods:{
 			LinkTo() {
 				uni.navigateTo({
-					url:'/pages/preShoot/index'
+					url:'/pages/shoot/index'
 				})
 			}
 		}

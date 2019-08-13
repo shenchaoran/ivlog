@@ -31,4 +31,10 @@ export default {
     getItem: id => {
         return http.get('videos', {id})
     },
+	uploadFile: (url, data) => {
+		return http.post(url, data)
+	},
+	getMusicList: (url) => {
+		return http.get(url)
+	}
 }
