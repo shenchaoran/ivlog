@@ -44,7 +44,10 @@ export default {
                 console.error(e)
                 return Promise.reject(e)
             }
-        }
+        },
+        navigateToNext: ({commit, dispatch, state}, id) => {
+
+        },
     },
     mutations: {
         refresh: (state, obj) => {

@@ -5,8 +5,8 @@
                 <block v-if='index%2==0' class="video-item">
                     <video class='video' 
                         @error="videoErrorCallback" 
-                        :src="'http://localhost:1111/ivlog/api/public/' + item.video"
-                        :poster="'http://localhost:1111/ivlog/api/public/' + item.pic"
+                        :src="baseUrl + item.videoName"
+                        :poster="baseUrl + item.cover"
                         :muted='true'
                         :autoplay='false'
                         :controls='false'
@@ -25,8 +25,8 @@
                 <block v-if='index%2==1' class="video-item">
                     <video class='video' 
                         @error="videoErrorCallback" 
-                        :src="'http://localhost:1111/ivlog/api/public/' + item.video"
-                        :poster="'http://localhost:1111/ivlog/api/public/' + item.pic"
+                        :src="baseUrl + item.videoName"
+                        :poster="baseUrl + item.cover"
                         :muted='true'
                         :autoplay='false'
                         :controls='false'
@@ -53,7 +53,10 @@
             }
         },
 		data() {
-			return {}
+			return {
+                // cfg.baseUrl = 'http://localhost:1111/ivlog/api/'
+                baseUrl: 'http://129.211.60.18:3000/ivlog/api/'
+            }
         },
         watch: {
             list: (newV, oldV) => {

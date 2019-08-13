@@ -4,8 +4,11 @@
             @error="videoErrorCallback" controls 
             :muted='false'
             :autoplay='true'
+            :show-center-play-btn='true'
             :src="'http://localhost:1111/ivlog/api/public/' + video.video"
-            :poster="'http://localhost:1111/ivlog/api/public/' + video.pic"></video>
+            :poster="'http://localhost:1111/ivlog/api/public/' + video.pic">
+            <cover-view class='video-cover' @touchmove='onTouchMove'></cover-view>
+        </video>
 	</view>
 </template>
 
@@ -30,7 +33,13 @@
 		methods: {
 			videoErrorCallback(e) {
                 console.log('videoError: ', e)
-            }
+            },
+            onPageScroll(e) {
+                console.log('onPageScroll')
+            },
+            onTouchMove(e) {
+                console.log('onTouchMove', e)
+            },
 		}
 	}
 </script>
@@ -88,5 +97,15 @@
 	.video {
         width: 100%;
         height: 100%;
+        position: relative;
+    }
+
+    .video-cover {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        top: 10%;
+        bottom: 10%;
+        background: #fff;
     }
 </style>
