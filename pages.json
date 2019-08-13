@@ -79,7 +79,7 @@
 			}
         },
 		{
-			"path": "pages/login/index",
+			"path": "pages/auth/login",
 			"style": {
 				"navigationBarTitleText": ""
 			}
@@ -125,7 +125,7 @@
 				"text":"首页"
 			},
 			{
-				"pagePath":"pages/shoot/sample",
+				"pagePath":"pages/auth/login",
 				"iconPath": "static/img/tabbar/add.png",
 				"selectedIconPath": "static/img/tabbar/add-active.png",
 				"text":"拍摄样片"

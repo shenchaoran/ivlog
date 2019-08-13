@@ -1,253 +1,160 @@
-<!-- 我的 -->
 <template>
-	<view id="main">
-		<view class="my_main" style="background-image:'../../static/img/my/05.png');" id="my_main">
-			<view class="my_main_01">
-				<view class="my_main_01_01">
-					<image src="../../static/img/my/sz1.png"></image>
-				</view>
-				<view style="width:100%;height:100upx;border:0px yellow solid;"></view>
-				<view class="my_main_01_02">
-					<view class="my_main_01_02_01">
-						<image src="../../static/img/my/10.jpg"></image>
-						<image src="../../static/img/my/nv.png" class="icon"></image>
-					</view>
-					<view class="my_main_01_02_02">
-						<view style="line-height:90upx;">我的天空</view>
-						<view style="font-size:20upx;">ID:1008611</view>
-					</view>
-				</view>
-				<view style="width:100%;height:20upx;border:0px yellow solid;"></view>
-				<view class="my_main_01_03">
-					<view class="my_main_01_03_01">
-						一点也不圆润 盘它!
-						<image src="../../static/img/my/update.png"></image>
-					</view>
-					<view class="my_main_01_03_02">
-						<view>4030获赞</view>
-						<view>17关注</view>
-						<view>3700粉丝</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<view class="my_main1">
-			<view class="my_main_02">
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/zan.png"></image>
-					</view>
-					<view class="mm02">我赞过的</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04">0</view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/pinglun.png"></image>
-					</view>
-					<view class="mm02">我的评论</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04"></view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/tiez.png"></image>
-					</view>
-					<view class="mm02">我的帖子</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04">0</view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/sxj.png"></image>
-					</view>
-					<view class="mm02">我的跟拍</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04">0</view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/sc1.png"></image>
-					</view>
-					<view class="mm02">我的收藏</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04">0</view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/ls.png"></image>
-					</view>
-					<view class="mm02">浏览历史</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04">0</view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/xz.png"></image>
-					</view>
-					<view class="mm02">我的下载</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04">0</view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/xhw.png"></image>
-					</view>
-					<view class="mm02">小黑屋</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04"></view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/phone.png"></image>
-					</view>
-					<view class="mm02">视频壁纸</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04"></view>
-				</view>
-				<view class="my_main_02_01">
-					<view class="mm01">
-						<image src="../../static/img/my/zf.png"></image>
-					</view>
-					<view class="mm02">分享给好友</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04"></view>
-				</view>
-				<view class="my_main_02_01" style="border-bottom:none;"> 
-					<view class="mm01">
-						<image src="../../static/img/my/qi.png"></image>
-					</view>
-					<view class="mm02" @click.stop="LinkTo">帮助与反馈</view>
-					<view class="mm03">
-						<image src="../../static/img/my/jt.png"></image>
-					</view>
-					<view class="mm04"></view>
-				</view>
-			</view>
-		</view>
-		<!-- <view style="width:100%;height:30upx;border:0px red solid;background:#1F1F2A;"></view> -->
-	</view>
+  <view>
+    <view class="person-head">
+      <cmd-avatar src="https://avatar.bbs.miui.com/images/noavatar_small.gif" @click="fnInfoWin" size="lg" :make="{'background-color': '#fff'}"></cmd-avatar>
+      <view class="person-head-box">
+        <view class="person-head-nickname">Slimmer</view>
+        <view class="person-head-username">ID：slimmer9501</view>
+      </view>
+    </view>
+    <view class="person-list">
+        <VideoList class='video-list' :action='""' :list='list'></VideoList>
+    </view>
+  </view>
 </template>
 
 <script>
-	export default {
-		onLoad() {
-			console.log(1)
+  import cmdAvatar from "@/components/cmd-avatar/cmd-avatar.vue"
+  import cmdIcon from "@/components/cmd-icon/cmd-icon.vue"
+  import cmdCellItem from "@/components/cmd-cell-item/cmd-cell-item.vue"
+  import VideoList from '../../components/video-list'
+  import { mapState, mapMutations, mapActions } from 'vuex';
+
+  export default {
+    components: {
+      cmdAvatar,
+      cmdCellItem,
+      cmdIcon
+    },
+    data() {
+        return {
+            _page: 1,
+            _limit: 10,
+            action: '',
+        }
+    },
+    computed: mapState({
+        list: state => {
+            return state.video.list
+        },
+        loading: state => state.video.loading,
+        error: state => state.video.error,
+    }),
+    watch: {
+        loading: function(newV, oldV) {
+            if(newV === false) {
+                uni.stopPullDownRefresh();
+            }
+            this.loadMore = 'more'
+            this.showLoadMore = 'none'
+        },
+        error: function(newV, oldV) {
+            if(newV) {
+                uni.showToast({
+                    title: '加载失败',
+                    icon: 'none',
+                });
+            }
+            uni.stopPullDownRefresh();
+            this.loadMore = 'more'
+            this.showLoadMore = 'none'
+        },
+    },
+    methods: {
+        ...mapActions(['getList']),
+        ...mapMutations(['refresh', 'setLoading', 'setList', ]),
+        goDetail(e) {
+            uni.navigateTo({
+                url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))
+            })
+        },
+		onLoad(option) {
+            let {data, action} = option
+            this.$data.action = action
+            try {
+                console.log('data:', data)
+                try {
+                    data = JSON.parse(decodeURIComponent(data))
+                }
+                catch(e) {
+                    e
+                }
+                if(action == 'chooseModel') {
+                    data = data.map(v => {
+                        return {
+                            id: 1,
+                            author: "chestershen",
+                            videoName: v,
+                            cover: v.replace('.mp4', '.jpg'),
+                            up: 15
+                        }
+                    })
+                    // this.list = data
+                    this.setList(data)
+                }
+                else {
+                    this.getList({
+                        _page: this.$data._page, 
+                        _limit: this.$data._limit,
+                    });
+                }
+            }
+            catch(e) {
+                e
+            }
+
+
+            // this.setLoading()
+            console.log(this.$data._page, this.$data._limit)
+
+            // uni.navigateTo({
+            //     url: `/pages/video/list?action=chooseModel&data=${encodeURIComponent(JSON.stringify(videoNameList))}`
+            // })
+			
 		},
-		data() {
-			return {
-				
-			};
-		},
-		methods:{
-			LinkTo() {
-				uni.navigateTo({
-					url:'/pages/preShoot/index'
-				})
-			}
-		}
-	}
+      /**
+       * 打开用户信息页
+       */
+      fnInfoWin() {
+        uni.navigateTo({
+          url: '/pages/user/info/info'
+        })
+      }
+    }
+  }
 </script>
 
-<style>
-	page{background:#242633;}
-    #main{
-        display: block;
-        width: 100%;
-    }
-	.my_main{display: flex;border:0px red solid;padding:30upx;padding-bottom:10upx;padding-top:65upx;}
-	.my_main1{display: flex;border:0px red solid;padding:30upx;padding-top:0;padding-bottom:0;}
-	.my_main .my_main_01{
-		width:100%;
-		height:auto;
-		border:0px green solid;
-		color:#fff;
-	}
-	.my_main1 .my_main_02{
-		width:100%;
-		height:auto;
-		border:0px green solid;
-	}
-	.my_main .my_main_01 .my_main_01_01,.my_main_01_02,.my_main_01_03{
-		width:100%;
-		border:0px blue solid;
-	}
-	.my_main .my_main_01 .my_main_01_01{height:60upx;}
-	.my_main .my_main_01 .my_main_01_01 image{width:40upx;height:40upx;float: right;margin-right:20upx;}
-	.my_main .my_main_01 .my_main_01_02{height:150upx;}
-	.my_main .my_main_01 .my_main_01_03{height:100upx;}
-	.my_main .my_main_01 .my_main_01_03 .my_main_01_03_01,.my_main_01_03_02,.my_main_01_03_03{
-		width:100%;
-		height:50%;
-		border:0px red solid;
-		font-size:30upx;
-	}
-	.my_main .my_main_01 .my_main_01_03 .my_main_01_03_01 image{width:30upx;height:30upx;margin-left:15upx;}
-	.my_main .my_main_01 .my_main_01_03 .my_main_01_03_02 view{
-		width:auto;
-		height:100%;
-		float: left;
-		box-sizing: border-box;
-		border:0px red solid;
-		padding-right:20upx;
-	}
-	.my_main .my_main_01 .my_main_01_02 .my_main_01_02_01,.my_main_01_02_02{
-		height:100%;
-		border:0px red solid;
-		float: left;
-		box-sizing: border-box;
-	}
-	.my_main .my_main_01 .my_main_01_02 .my_main_01_02_01 image{width:150upx;height:150upx;border-radius:100%;}
-	.my_main .my_main_01 .my_main_01_02 .my_main_01_02_01 .icon{width:40upx;height:40upx;position: absolute;left: 135upx;}
-	.my_main .my_main_01 .my_main_01_02 .my_main_01_02_02{width:auto;padding-left:20upx;}
-	.my_main .my_main_01 .my_main_01_02 .my_main_01_02_02 view{width:100%;height:50%;border:0px red solid;font-size: 30upx;}
-	.gg{width:100%;height:140upx;padding-top:7upx;padding-bottom:7upx;background: #2E2E2E;}
-	.gg image{width:100%;height:100%;}
-	.my_main1 .my_main_02 .my_main_02_01{
-		width:100%;
-		height:90upx;
-		border:0px #FF4081 solid;
-		border-bottom: #1C1E2B 1upx solid;
-	}
-	.my_main1 .my_main_02 .my_main_02_01 .mm01,.mm02,.mm03,.mm04{
-		height:100%;
-		width: 90upx;
-		border:0px red solid;
-		float: left;
-		box-sizing: border-box;
-		color: #fff;
-	}
-	.my_main1 .my_main_02 .my_main_02_01 .mm01{padding:25upx;}
-	.my_main1 .my_main_02 .my_main_02_01 .mm03{float: right;width:35upx;padding-top:25upx;padding-bottom:25upx;}
-	.my_main1 .my_main_02 .my_main_02_01 .mm04{float: right;width:auto;line-height:90upx;font-size:25upx;text-align: right;color: #999999;}
-	.my_main1 .my_main_02 .my_main_02_01 .mm02{width:auto;font-size: 30upx;letter-spacing:4upx;line-height:90upx;padding-left:10upx;padding-right:10upx;}
-	.my_main1 .my_main_02 .my_main_02_01 .mm01 image{
-		width:100%;
-		height:100%;
-	}
-	.my_main1 .my_main_02 .my_main_02_01 .mm03 image{
-		width:100%;
-		height:100%;
-	}
-	
+<style lang="scss">
+  .person-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 150px;
+    padding-left: 20px;
+    background: linear-gradient(to right, #365fff, #36bbff);
+  }
+
+  .person-head-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 10px;
+  }
+
+  .person-head-nickname {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .person-head-username {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .person-list {
+    line-height: 0;
+  }
 </style>

@@ -138,7 +138,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
     html{
         height: 100%;
         width: 100%;
