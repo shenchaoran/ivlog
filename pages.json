@@ -1,0 +1,95 @@
+{
+	"pages": [
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "最热",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/detail/index",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"type": "share"
+						}]
+					}
+				},
+				"h5": {
+					"titleNView": {
+						"buttons": [{
+							"type": "favorite"
+						}]
+					}
+				}
+			}
+		},
+        {
+            "path" : "pages/my/index",
+            "style" : {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor":"#000000",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+        },
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/register/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/preShoot/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/shoot/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/checkVideo/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#FFFFFF",
+		"selectedColor": "#ffffff",
+		"borderStyle": "black",
+		"backgroundColor": "#212131",
+		"list": [
+			{
+				"pagePath":"pages/home/index",
+				"iconPath": "static/img/tabbar/home.png",
+				"selectedIconPath": "static/img/tabbar/home-active.png",
+				"text":"首页"
+			},
+			{
+				"pagePath":"pages/my/index",
+				"iconPath":"static/img/tabbar/me.png",
+				"selectedIconPath":"static/img/tabbar/me-active.png",
+				"text":"我的"
+			}
+		]
+	}
+}
