@@ -54,6 +54,10 @@ export default {
             state.list = []
             state.loading = true
         },
+        setList: (state, list) => {
+            state.list = list
+            statusbar.loading = false
+        },
         setLoading: (state, obj) => {
             state.loading = true
         }

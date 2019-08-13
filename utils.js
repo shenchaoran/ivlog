@@ -9,6 +9,6 @@ export function uploadFile(url, filePath, name, formData = { openid: 'test'}) {
 			formData
 		}
 		// let opts = { url, filePath, name, formData, header: { 'Content-Type': "multipart/form-data"}, success: resolve, fail: reject}
-		wx.uploadFile(tempObj)
+		uni.uploadFile(tempObj)
 	})
 }

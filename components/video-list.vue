@@ -49,13 +49,17 @@
         props: {
             list: {
 				type: Array,
-				default: []
-            }
+				default: [],
+            },
+            action: {
+                type: String,
+                default: '',
+            },
         },
 		data() {
 			return {
-                // cfg.baseUrl = 'http://localhost:1111/ivlog/api/'
-                baseUrl: 'http://129.211.60.18:3000/ivlog/api/public/'
+                baseUrl: 'http://129.211.60.18:3000/ivlog/api/public/',
+                // baseUrl: 'http://10.66.146.106:1111/ivlog/api/public/',
             }
         },
         watch: {
@@ -65,8 +69,10 @@
         },
 		methods: {
 			goDetail(v) {
+                let url = `/pages/video/detail?action=${this.$data.action}&data=${encodeURIComponent(JSON.stringify(v))}`
+                console.log(url)
 				uni.navigateTo({
-					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(v))
+					url
 				})
             },
             videoErrorCallback() {

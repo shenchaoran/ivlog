@@ -131,7 +131,7 @@
 				"text":"拍摄样片"
 			},
 			{
-				"pagePath":"pages/video/my",
+				"pagePath":"pages/my/index",
 				"iconPath":"static/img/tabbar/me.png",
 				"selectedIconPath":"static/img/tabbar/me-active.png",
 				"text":"我的"

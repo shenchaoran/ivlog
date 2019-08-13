@@ -73,24 +73,37 @@
 			console.log(8888)
 			if (this.tempVideoPath) {
 				const url =  'http://129.211.60.18/ivlog/api/sample'
-				console.log('调用上传函数了')
-				uploadFile(url, this.tempVideoPath, 'tempVideoPath')
-				// uploadFile(url, this.tempThumbPath, 'tempThumbPath')
+                console.log('调用上传函数了')
+                
+                uni.uploadFile({
+                    url,
+                    filePath: this.tempVideoPath,
+                    name: 'video',
+                    success: (uploadFileRes) => {
+                        console.log(uploadFileRes.data);
+                    },
+                    fail: e => {
+                        console.log
+                    },
+                    complete: console.log
+                })
+				// uploadFile(url, this.tempVideoPath, 'tempVideoPath')
+				// // uploadFile(url, this.tempThumbPath, 'tempThumbPath')
+				// // .then(r => {
+				// // 	console.log(r)
+				// // 	return uploadFile(url, this.tempVideoPath, 'tempVideoPath')
+				// // })
 				// .then(r => {
+				// 	console.log('上传成功')
 				// 	console.log(r)
-				// 	return uploadFile(url, this.tempVideoPath, 'tempVideoPath')
+				// 	uni.navicatTo({
+				// 		url: `pages/shoot/index?demoUrl=${r.demourl}`
+				// 	})
 				// })
-				.then(r => {
-					console.log('上传成功')
-					console.log(r)
-					uni.navicatTo({
-						url: `pages/shoot/index?demoUrl=${r.demourl}`
-					})
-				})
-				.catch(e => {
-					console.log('上传失败')
-					console.log(e)
-				})	
+				// .catch(e => {
+				// 	console.log('上传失败')
+				// 	console.log(e)
+				// })	
 			} else {
 				console.log(this.ifNotice)
 				this.ifNotice = true

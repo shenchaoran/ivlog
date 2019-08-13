@@ -1,6 +1,6 @@
 <template>
 	<view class="list-container">
-        <VideoList class='video-list' :list='list'></VideoList>
+        <VideoList class='video-list' :action='action' :list='list'></VideoList>
         <view class='load-more'>
 			<uni-load-more
                 :style='"display:" + showLoadMore'
@@ -26,6 +26,7 @@
                 _limit: 10,
                 loadMore: 'more',
                 showLoadMore: 'none',
+                action: '',
                 loadMoreText: {
                     contentdown: "上拉显示更多",
                     contentrefresh: "正在加载...",
@@ -60,13 +61,49 @@
                 this.showLoadMore = 'none'
             },
         },
-		onLoad() {
+		onLoad(option) {
+            let {data, action} = option
+            this.$data.action = action
+            try {
+                console.log('data:', data)
+                try {
+                    data = JSON.parse(decodeURIComponent(data))
+                }
+                catch(e) {
+                    e
+                }
+                if(action == 'chooseModel') {
+                    data = data.map(v => {
+                        return {
+                            id: 1,
+                            author: "chestershen",
+                            videoName: v,
+                            cover: v.replace('.mp4', '.jpg'),
+                            up: 15
+                        }
+                    })
+                    // this.list = data
+                    this.setList(data)
+                }
+                else {
+                    this.getList({
+                        _page: this.$data._page, 
+                        _limit: this.$data._limit,
+                    });
+                }
+            }
+            catch(e) {
+                e
+            }
+
+
             // this.setLoading()
             console.log(this.$data._page, this.$data._limit)
-			this.getList({
-                _page: this.$data._page, 
-                _limit: this.$data._limit,
-            });
+
+            // uni.navigateTo({
+            //     url: `/pages/video/list?action=chooseModel&data=${encodeURIComponent(JSON.stringify(videoNameList))}`
+            // })
+			
 		},
 		onPullDownRefresh() {
 			console.log('下拉刷新');
@@ -91,7 +128,7 @@
 		},
 		methods: {
             ...mapActions(['getList']),
-            ...mapMutations(['refresh', 'setLoading']),
+            ...mapMutations(['refresh', 'setLoading', 'setList', ]),
 			goDetail(e) {
 				uni.navigateTo({
 					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))

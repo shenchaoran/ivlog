@@ -7,31 +7,46 @@
             :show-center-play-btn='true'
             :src="baseUrl + video.videoName"
             :poster="baseUrl + video.cover">
-            <!-- <cover-view class='video-cover' @touchmove='onTouchMove'></cover-view> -->
+            <cover-view class='video-cover' @touchmove='onTouchMove'>
+                <view class='chooseBtn' >
+                    <uni-icon class='icon' @tap='onChoose' :type="'checkbox-filled'" :color="'#007aff'" size="40" />
+                </view>
+            </cover-view>
         </video>
 	</view>
 </template>
 
 <script>
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	export default {
+        components: {uniIcon},
 		data() {
 			return {
                 baseUrl: 'http://129.211.60.18:3000/ivlog/api/public/',
-				video: null,
+                // baseUrl: 'http://10.66.146.106:1111/ivlog/api/public/',
+                video: null,
+                action: 'chooseModel',
 			}
 		},
 		onLoad(option) {
-            let {data} = option
+            let {action, data} = option
             try {
                 console.log('data:', data)
-                this.video = JSON.parse(data)
-                console.log('video: ', this.video.videoName)
+                data = JSON.parse(decodeURIComponent(data))
+                console.log('video: ', data.videoName)
+                this.video = data
+                this.action = action
             }
             catch(e) {
                 e
             }
 		},
 		methods: {
+            onChoose() {
+                uni.navigateTo({
+					url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))
+				})
+            },
 			videoErrorCallback(e) {
                 console.log('videoError: ', e)
             },
@@ -46,6 +61,10 @@
 </script>
 
 <style>
+    @font-face {
+        font-family: 'iconfont';
+        src: url('https://at.alicdn.com/t/font_865816_17gjspmmrkti.ttf') format('truetype');
+    }
     html{
         height: 100%;
         width: 100%;
@@ -74,6 +93,7 @@
         /* height: 100%; */
         background: #000000;
         flex: 1;
+        position: relative;
     }
 /* 
     uni-page-wrapper {
@@ -103,10 +123,23 @@
 
     .video-cover {
         position: absolute;
-        left: 10%;
-        right: 10%;
-        top: 10%;
-        bottom: 10%;
-        background: #fff;
+        left: 50px;
+        right: 50px;
+        top: 50px;
+        bottom: 50px;
+        /* background: #fff; */
+    }
+
+    .chooseBtn {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        color: rgb(255, 0, 0);
+    }
+
+    .icon {
+        /* right: 50px;
+        bottom: 50px; */
+        color: rgb(255, 0, 0);
     }
 </style>

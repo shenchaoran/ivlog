@@ -7,112 +7,112 @@
         {
             "id": 1,
             "author": "chestershen",
-            "video": "0c9129937e90c29828e7331c7a7a216d.mp4",
-            "pic": "01.png",
+            "videoName": "0c9129937e90c29828e7331c7a7a216d.mp4",
+            "cover": "01.png",
             "up": 15
         },
         {
             "id": 2,
             "author": "chestershen",
-            "video": "3adb7f02449a094ad79219e92c4baa57.mp4",
-            "pic": "02.png",
+            "videoName": "3adb7f02449a094ad79219e92c4baa57.mp4",
+            "cover": "02.png",
             "up": 2145
         },
         {
             "id": 3,
             "author": "chestershen",
-            "video": "9f5ea6dfc73347da36ea3dd07b1366dc.mp4",
-            "pic": "03.png",
+            "videoName": "9f5ea6dfc73347da36ea3dd07b1366dc.mp4",
+            "cover": "03.png",
             "up": 4
         },
         {
             "id": 4,
             "author": "chestershen",
-            "video": "62b4e0cb06760c464f732f1360f807af.mp4",
-            "pic": "04.png",
+            "videoName": "62b4e0cb06760c464f732f1360f807af.mp4",
+            "cover": "04.png",
             "up": 678
         },
         {
             "id": 5,
             "author": "chestershen",
-            "video": "866c17347e91bde637746d7d29909e1e.mp4",
-            "pic": "05.png",
+            "videoName": "866c17347e91bde637746d7d29909e1e.mp4",
+            "cover": "05.png",
             "up": 21
         },
         {
             "id": 6,
             "author": "chestershen",
-            "video": "90945f31e4b90b3d71485892843ba61b.mp4",
-            "pic": "06.png",
+            "videoName": "90945f31e4b90b3d71485892843ba61b.mp4",
+            "cover": "06.png",
             "up": 76
         },
         {
             "id": 7,
             "author": "chestershen",
-            "video": "17117306b4e0d97579a1441b1021f25a.mp4",
-            "pic": "07.png",
+            "videoName": "17117306b4e0d97579a1441b1021f25a.mp4",
+            "cover": "07.png",
             "up": 12
         },
         {
             "id": 8,
             "author": "chestershen",
-            "video": "a70848d0efe7f0a839e524cd7f96f293.mp4",
-            "pic": "08.png",
+            "videoName": "a70848d0efe7f0a839e524cd7f96f293.mp4",
+            "cover": "08.png",
             "up": 333
         },{
             "id": 9,
             "author": "chestershen",
-            "video": "0c9129937e90c29828e7331c7a7a216d.mp4",
-            "pic": "09.png",
+            "videoName": "0c9129937e90c29828e7331c7a7a216d.mp4",
+            "cover": "09.png",
             "up": 15
         },
         {
             "id": 10,
             "author": "chestershen",
-            "video": "3adb7f02449a094ad79219e92c4baa57.mp4",
-            "pic": "10.png",
+            "videoName": "3adb7f02449a094ad79219e92c4baa57.mp4",
+            "cover": "10.png",
             "up": 2145
         },
         {
             "id": 11,
             "author": "chestershen",
-            "video": "9f5ea6dfc73347da36ea3dd07b1366dc.mp4",
-            "pic": "11.png",
+            "videoName": "9f5ea6dfc73347da36ea3dd07b1366dc.mp4",
+            "cover": "11.png",
             "up": 4
         },
         {
             "id": 12,
             "author": "chestershen",
-            "video": "62b4e0cb06760c464f732f1360f807af.mp4",
-            "pic": "",
+            "videoName": "62b4e0cb06760c464f732f1360f807af.mp4",
+            "cover": "",
             "up": 678
         },
         {
             "id": 13,
             "author": "chestershen",
-            "video": "866c17347e91bde637746d7d29909e1e.mp4",
-            "pic": "",
+            "videoName": "866c17347e91bde637746d7d29909e1e.mp4",
+            "cover": "",
             "up": 21
         },
         {
             "id": 14,
             "author": "chestershen",
-            "video": "90945f31e4b90b3d71485892843ba61b.mp4",
-            "pic": "",
+            "videoName": "90945f31e4b90b3d71485892843ba61b.mp4",
+            "cover": "",
             "up": 76
         },
         {
             "id": 15,
             "author": "chestershen",
-            "video": "17117306b4e0d97579a1441b1021f25a.mp4",
-            "pic": "",
+            "videoName": "17117306b4e0d97579a1441b1021f25a.mp4",
+            "cover": "",
             "up": 12
         },
         {
             "id": 16,
             "author": "chestershen",
-            "video": "a70848d0efe7f0a839e524cd7f96f293.mp4",
-            "pic": "",
+            "videoName": "a70848d0efe7f0a839e524cd7f96f293.mp4",
+            "cover": "",
             "up": 333
         }
     ]

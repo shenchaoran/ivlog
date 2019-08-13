@@ -2,7 +2,7 @@ import http from '../utils/http'
 
 http.interceptor.request = cfg => {
     // if (process.env.NODE_ENV === 'development') {
-    //     cfg.baseUrl = 'http://localhost:1111/ivlog/api/'
+    //     cfg.baseUrl = 'http://10.66.146.106:1111/ivlog/api/'
     // }
     // else {
         cfg.baseUrl = 'http://129.211.60.18:3000/ivlog/api/'
