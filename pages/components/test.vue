@@ -10,7 +10,11 @@
 				<text class="audio-author am-text-eill">{{ author }}</text>
 			</view>
 			<view class="audio-time">{{ audioTimeUpdate }}</view>
+			<button @tap="handleSelectMusic" class="selectMusic" type="default" plain="true" color="#dd6572">选择</button>
 		</view>
+		<!-- <view class="musicButtonWrap">
+			<button class="selectMusic" type="default" size="mini">111</button>
+		</view> -->
 	</view>
 </template>
 
@@ -63,7 +67,11 @@
 			obeyMuteSwitch: {
 				type: Boolean,
 				default: true
-			}
+			},
+			musicId: {
+				type: String,
+				default: ''
+			},
 		},
 		data() {
 			return {
@@ -81,6 +89,9 @@
 			handleBtnClick() {
 				// console.log(10)
 				this.$emit('update:play', !this.play);
+			},
+			handleSelectMusic() {
+				this.$emit('handleSelectMusic', this.musicId)
 			},
 			contextInit() {
 				console.log('创建');
@@ -215,6 +226,14 @@ template {
 	top: 6px;
 	font-size: 13px;
 	color: #9d9d9d;
+}
+.selectMusic {
+	position: absolute;
+	right: 2vw;
+	bottom: 2vw;
+	font-size: 13px;
+	height: 8vw;
+	width: 10vw;
 }
 </style>
 

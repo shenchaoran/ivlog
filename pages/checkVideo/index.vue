@@ -27,9 +27,16 @@
 		<!-- <luch-audio src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3" :play.sync="audioPlay"></luch-audio> -->
 		<view :class="{musicList: true, musicListTransShow:ifMusicListShow, musicListTransHide: ifMusicListHide}">
 			<view class="musicWrapper" v-for="current in currents">
-				<!-- <test :play="audioPlay" :src="current.src"></test> -->
                 <!-- <audio style="text-align: left" :src="current.src" :poster="current.poster" :name="current.name" :author="current.author" :action="audioAction" controls></audio> -->
-				<test :src="current.src" :poster="current.poster" :name="current.name" :author="current.author" loop="true" :play.sync="current.audioPlay"></test>
+				<test 
+				:src="current.src" 
+				:poster="current.poster" 
+				:name="current.musicFileName" 
+				:author="current.desc" 
+				loop="true" 
+				:play.sync="audioPlay" 
+				@handleSelectMusic="handleSelectMusic" 
+				:musicId.sync="current.id"></test>
             </view>
 		</view>
 	</view>
@@ -44,6 +51,8 @@
 	
 	import { uploadFile } from '../../utils.js'
 	
+	import api from '../../api/index.js'
+	
 	export default {
 		components: {
 			uniIcon,
@@ -52,110 +61,46 @@
 		},
 		data() {
 			return {
-				// audioPlay: true,
-				tempThumbPath: '',
+				audioPlay: true,
+				demoUrl:'',
+				// tempThumbPath: '',
 				tempVideoPath: '',
 				music: '',
 				ifMusicListShow: false,
 				ifMusicListHide: false,
-				currents:[
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-					{
-						poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
-						name: '致爱丽丝',
-						author: '暂无',
-						src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-						audioPlay: true,
-					},
-				]
+				currents:[],
+				musicId: ''
 			}
 		},
 		
 		onLoad: function (option) {
 			if (option) {
 				console.log(option)
-				this.tempThumbPath = option.tempThumbPath
 				this.tempVideoPath = option.tempVideoPath
+				this.demoUrl = option.demoUrl
 			}
+			api.getMusicList('musics').then(res => {
+				res.data.data.forEach(item => {
+					item.src = `http://129.211.60.18:3000/ivlog/api/public/${item.type}/${item.musicFileName}`
+					console.log(item.src)
+				})
+				this.currents = res.data.data
+			}).catch(err => {
+				console.log(err)
+			})
 		},
 		
 		methods: {
+			handleChooseMusic() {
+			  this.ifMusicListShow = true
+			  this.ifMusicListHide = false
+			},
+			handleSelectMusic(id) {
+				console.log(id)
+				this.musicId = id
+				this.ifMusicListShow = true
+				this.ifMusicListHide = false
+			},
 			handleTap() {
 				if (this.ifMusicListShow) {
 					this.ifMusicListHide = true
@@ -167,35 +112,40 @@
 			imageError(err) {
 				console.log(err)
 			},
+			
 			handleResetShoot() {
 				uni.navigateTo({
-					url:'/pages/shoot/index'
+					url:'/pages/shoot/index?demoUrl=${demoUrl}'
 				})
-				console.log(1)
 			},
+			
 			handleUploadShoot() {
-				// uploadFile(url, this.tempThumbPath, 'tempThumbPath')
-				// .then(r => {
-				// 	console.log(r)
-				// 	return uploadFile(url, this.tempVideoPath, 'tempVideoPath')
-				// })
-				// .then(r => {
-				// 	console.log('上传成功')
-				// 	console.log(r)
-				// })
-				// .catch(e => {
-				// 	console.log('上传失败')
-				// 	console.log(e)
-				// })
-				console.log(2)
-			},
-			handleChooseMusic() {
-				console.log(3)
-				this.ifMusicListShow = true
-				this.ifMusicListHide = false
-				// uni.navigateTo({
-				// 	url:'/pages/shoot/index'
-				// })
+				if (this.tempVideoPath) {
+					const url =  'http://129.211.60.18:3000/ivlog/api/videos'
+					console.log('调用上传函数了')
+					
+					uni.uploadFile({
+						url,
+						filePath: this.tempVideoPath,
+						name: 'video',
+						formData:{
+							openid: 'oxLxH47TuWWQlPyR9Jz1MLVdq3Ek',
+							desc: '',
+							avatar: 'gyuefgwyuefwgyuefwgyufewgyuew',
+						},
+						success: (uploadFileRes) => {
+							console.log('上传成功')
+							console.log(uploadFileRes);
+						},
+						fail(err) {
+							console.log('出错了')
+							console.log(err)
+						}
+					})
+				} else {
+					console.log(this.ifNotice)
+					this.ifNotice = true
+				}
 			}
 		}
 	}

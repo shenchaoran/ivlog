@@ -5,7 +5,7 @@ export function uploadFile(url, filePath, name, formData = { openid: 'test'}) {
 		const tempObj = {
 			url,
 			filePath,
-			name: 'video',
+			name,
 			formData
 		}
 		// let opts = { url, filePath, name, formData, header: { 'Content-Type': "multipart/form-data"}, success: resolve, fail: reject}
