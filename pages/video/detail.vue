@@ -9,12 +9,17 @@
             :poster="baseUrl + video.cover">
             <cover-view class='video-cover' @touchmove='onTouchMove'>
                 <view class='right-side'>
-                    <view class='btn chooseBtn' v-if='action== "chooseModel"'>
-                        <uni-icon class='icon' @tap='onChoose' :type="'checkbox-filled'" :color="'#007aff'" size="40" />
+                    <!-- <view class='btn chooseBtn' v-if='action== "chooseModel"'>
+                        <uni-icon class='icon' @tap='onChoose' :type="'checkbox-filled'" :color="'#fff'" size="40" />
+                    </view> -->
+                    <view class='btn choose-btn icon-item'>
+                        <uni-icon class='icon' @tap='like' :type="'star-filled'" :color="'#fff'" size="40" />
+                        <text>{{parseInt(Math.random() * 1000)}}</text>
                     </view>
-                    <view class='btn '>
-                        <uni-icon class='icon' @tap='onChoose' :type="'paperplane'" :color="'#007aff'" size="40" />
+                    <view class='btn choose-btn'>
+                        <uni-icon class='icon' @tap='onChoose' :type="'paperplane'" :color="'#fff'" size="40" />
                     </view>
+                    
                 </view>
             </cover-view>
         </video>
@@ -52,6 +57,9 @@
                 // uni.navigateTo({
 				// 	url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))
 				// })
+            },
+            like() {
+
             },
 			videoErrorCallback(e) {
                 console.log('videoError: ', e)
@@ -107,20 +115,30 @@
             position: relative;
             .video-cover {
                 position: absolute;
-                left: 50px;
-                right: 50px;
+                left: 50%;
+                right: 20px;
                 top: 50px;
                 bottom: 50px;
 
                 .right-side {
                     .btn {
-                        &.chooseBtn {
-                            position: absolute;
-                            right: 5px;
+                        position: absolute;
+                        right: 5px;
+                        margin-bottom: 20px;
+                        &.choose-btn {
                             bottom: 5px;
-                            color: rgb(255, 0, 0);
                         }
                     }
+                }
+
+                .icon-item {
+                    display: inline-flex;
+                    width: 187upx;
+                    height: 187upx;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
                 }
             }
         }
