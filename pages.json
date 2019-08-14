@@ -125,7 +125,7 @@
 				"text":"首页"
 			},
 			{
-				"pagePath":"pages/shoot/index",
+				"pagePath":"pages/preShoot/index",
 				"iconPath": "static/img/tabbar/add.png",
 				"selectedIconPath": "static/img/tabbar/add-active.png",
 				"text":"拍摄样片"
