@@ -5,7 +5,7 @@ http.interceptor.request = cfg => {
     //     cfg.baseUrl = 'http://10.66.146.106:1111/ivlog/api/'
     // }
     // else {
-        cfg.baseUrl = 'http://129.211.60.18:3000/ivlog/api/'
+        cfg.baseUrl = 'http://129.204.14.178:3000/ivlog/api/'
     // }
 }
 

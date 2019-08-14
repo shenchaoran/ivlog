@@ -66,7 +66,7 @@
         },
 		data() {
 			return {
-                baseUrl: 'http://129.211.60.18:3000/ivlog/api/public/',
+                baseUrl: 'http://129.204.14.178:3000/ivlog/api/public/',
                 // baseUrl: 'http://10.66.146.106:1111/ivlog/api/public/',
             }
         },

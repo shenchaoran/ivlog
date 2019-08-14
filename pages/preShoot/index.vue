@@ -74,7 +74,7 @@
 			console.log(this.tempVideoPath)
 			console.log(8888)
 			if (this.tempVideoPath) {
-				const url =  'http://129.211.60.18:3000/ivlog/api/sample'
+				const url =  'http://129.204.14.178:3000/ivlog/api/sample'
 				console.log('调用上传函数了')
 				
 				uni.uploadFile({

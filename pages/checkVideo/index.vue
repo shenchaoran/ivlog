@@ -81,7 +81,7 @@
 			}
 			api.getMusicList('musics').then(res => {
 				res.data.data.forEach(item => {
-					item.src = `http://129.211.60.18:3000/ivlog/api/public/${item.type}/${item.musicFileName}`
+					item.src = `http://129.204.14.178:3000/ivlog/api/public/${item.type}/${item.musicFileName}`
 					console.log(item.src)
 				})
 				this.currents = res.data.data
@@ -121,7 +121,7 @@
 			
 			handleUploadShoot() {
 				if (this.tempVideoPath) {
-					const url =  'http://129.211.60.18:3000/ivlog/api/videos'
+					const url =  'http://129.204.14.178:3000/ivlog/api/videos'
 					console.log('调用上传函数了')
 					
 					uni.uploadFile({

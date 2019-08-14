@@ -22,7 +22,7 @@
 					success: function (res) {
 						console.log('uni.login.success: ',res);
 						uni.request({
-							url: 'http://129.211.60.18:3000/ivlog/api/login',
+							url: 'http://129.204.14.178:3000/ivlog/api/login',
 							data: {
 								code: res.code
 							},
