@@ -3,8 +3,7 @@
         <div class='left'>
             <block v-for="(item, index) in list" :key="item.id">
                 <block v-if='index%2==0' class="video-item">
-                    <video class='video' 
-                        @error="videoErrorCallback" 
+                    <video  class='video' 
                         :src="baseUrl + item.videoName"
                         :poster="baseUrl + item.cover"
                         :muted='true'
@@ -16,15 +15,19 @@
                         :show-progress='false'
                         :show-play-btn='false'
                         :enable-progress-gesture='false'
-                        @click="goDetail(item)"></video>
+                        @click="goDetail(item)"
+                        @error="videoErrorCallback" ></video>
+                    <!-- <image v-else 
+                        :mode='"scallToFill"'
+                        :src='baseUrl + item.cover'
+                        @click='onCoverClick(item)' ></image> -->
                 </block>
             </block>
         </div>
         <div class='right'>
             <block v-for="(item, index) in list" :key="item.id">
                 <block v-if='index%2==1' class="video-item">
-                    <video class='video' 
-                        @error="videoErrorCallback" 
+                    <video  class='video' 
                         :src="baseUrl + item.videoName"
                         :poster="baseUrl + item.cover"
                         :muted='true'
@@ -36,7 +39,12 @@
                         :show-progress='false'
                         :show-play-btn='false'
                         :enable-progress-gesture='false'
-                        @click="goDetail(item)"></video>
+                        @click="goDetail(item)"
+                        @error="videoErrorCallback" ></video>
+                    <!-- <image v-else 
+                        :mode='"scallToFill"'
+                        :src='baseUrl + item.cover'
+                        @click='onCoverClick(item)' ></image> -->
                 </block>
             </block>
         </div>
@@ -74,6 +82,10 @@
 				uni.navigateTo({
 					url
 				})
+            },
+            onCoverClick(item) {
+                item.show=true
+                console.log('onCoverClick', item)
             },
             videoErrorCallback() {
 

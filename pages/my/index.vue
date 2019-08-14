@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class='my-container'>
     <view class="person-head">
       <cmd-avatar src="https://avatar.bbs.miui.com/images/noavatar_small.gif" @click="fnInfoWin" size="lg" :make="{'background-color': '#fff'}"></cmd-avatar>
       <view class="person-head-box">
@@ -24,7 +24,8 @@
     components: {
       cmdAvatar,
       cmdCellItem,
-      cmdIcon
+      cmdIcon,
+      VideoList,
     },
     data() {
         return {
@@ -93,6 +94,7 @@
                     this.setList(data)
                 }
                 else {
+                    console.log('onLoad get list')
                     this.getList({
                         _page: this.$data._page, 
                         _limit: this.$data._limit,
@@ -125,22 +127,52 @@
 </script>
 
 <style lang="scss">
-  .person-head {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 150px;
-    padding-left: 20px;
-    background: linear-gradient(to right, #365fff, #36bbff);
-  }
+html, body {
+    height: 100%;
+    width: 100%;
+}
 
-  .person-head-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: 10px;
-  }
+	page,
+	view {
+		display: flex;
+	}
+	
+	page {
+		display: flex;
+		min-height: 100%;
+		background-color: #000000;
+	}
+	
+	template {
+		display: flex;
+		flex: 1;
+	}
+
+    .my-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+
+        .person-head {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 150px;
+            padding-left: 20px;
+            background: linear-gradient(to right, #365fff, #36bbff);
+        }
+
+        .person-head-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin-left: 10px;
+        }
+    }
+  
 
   .person-head-nickname {
     font-size: 18px;
@@ -156,5 +188,6 @@
 
   .person-list {
     line-height: 0;
+    background: #000;
   }
 </style>

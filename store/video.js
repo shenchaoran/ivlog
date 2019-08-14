@@ -7,10 +7,24 @@ export default {
         loading: true,
         error: null,
         list: [],
+        ownList: [],
         item: {},
     },
     getters: {},
     actions: {
+        getOwnList: async ({commit, dispatch, state}, {_page, _limit}) => {
+            try {
+                state.loading = true
+                let {data: {code, msg, data}} = await api.getList({_page, _limit})
+                state.ownList = _.concat(state.ownList, data)
+                state.loading = false
+                console.log(code, msg)
+            }
+            catch(e) {
+                console.error(e)
+                return Promise.reject(e)
+            }
+        },
         getList: async ({commit, dispatch, state}, {_page, _limit}) => {
             try {
                 state.loading = true

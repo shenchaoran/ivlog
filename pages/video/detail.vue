@@ -8,18 +8,15 @@
             :src="baseUrl + video.videoName"
             :poster="baseUrl + video.cover">
             <cover-view class='video-cover' @touchmove='onTouchMove'>
-                <view class='right-side'>
-                    <!-- <view class='btn chooseBtn' v-if='action== "chooseModel"'>
-                        <uni-icon class='icon' @tap='onChoose' :type="'checkbox-filled'" :color="'#fff'" size="40" />
-                    </view> -->
-                    <view class='btn choose-btn icon-item'>
-                        <uni-icon class='icon' @tap='like' :type="'star-filled'" :color="'#fff'" size="40" />
-                        <text>{{parseInt(Math.random() * 1000)}}</text>
-                    </view>
-                    <view class='btn choose-btn'>
-                        <uni-icon class='icon' @tap='onChoose' :type="'paperplane'" :color="'#fff'" size="40" />
-                    </view>
-                    
+                <!-- <view class='btn chooseBtn' v-if='action== "chooseModel"'>
+                    <uni-icon class='icon' @tap='onChoose' :type="'checkbox-filled'" :color="'#fff'" size="40" />
+                </view> -->
+                <view class='btn icon-item'>
+                    <uni-icon class='icon' @tap='like' :type="'star-filled'" :color="'#fff'" size="25" />
+                    <text class='text'>{{parseInt(Math.random() * 1000)}}</text>
+                </view>
+                <view class='btn choose-btn'>
+                    <uni-icon class='icon' @tap='onChoose' :type="'checkbox-filled'" :color="'#fff'" size="25" />
                 </view>
             </cover-view>
         </video>
@@ -114,31 +111,38 @@
             height: 100%;
             position: relative;
             .video-cover {
-                position: absolute;
+                position: fixed;
                 left: 50%;
                 right: 20px;
                 top: 50px;
                 bottom: 50px;
 
-                .right-side {
-                    .btn {
-                        position: absolute;
-                        right: 5px;
-                        margin-bottom: 20px;
-                        &.choose-btn {
-                            bottom: 5px;
-                        }
+                // float: right;
+                display: flex;
+                flex-flow: column;
+                justify-content: flex-end;
+                align-items: flex-end;
+                
+                .btn {
+                    right: 5px;
+                    margin-bottom: 40px;
+                    &.choose-btn {
+                        bottom: 5px;
                     }
                 }
 
                 .icon-item {
                     display: inline-flex;
-                    width: 187upx;
-                    height: 187upx;
+                    // width: 187upx;
+                    // height: 187upx;
+                    color: #fff;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     text-align: center;
+                    .text {
+                        font-size: 15px;
+                    }
                 }
             }
         }
