@@ -50,10 +50,10 @@
 		},
 		methods: {
             onChoose() {
-                console.log('choose')
-                // uni.navigateTo({
-				// 	url: '/pages/video/detail?data=' + encodeURIComponent(JSON.stringify(e))
-				// })
+                console.log('choose video: ', this.video)
+                uni.navigateTo({
+					url: '/pages/shoot/index?data=' + encodeURIComponent(JSON.stringify(this.video))
+				})
             },
             like() {
 
