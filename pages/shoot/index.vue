@@ -2,7 +2,7 @@
 	<view class="wrapperBox">
 		<view class="exampleBox">
 			<camera class="camera" device-position="back" flash="off" @error="error"></camera>
-			<video id="myVideo" class="videoBox" :src="demoUrl"
+			<video id="myVideo" class="videoBox" :src="src"
 			@error="videoErrorCallback" controls autoplay=false loop="true" show-fullscreen-btn="false"></video>
         </view>
 		<view class="buttonBox">
@@ -26,14 +26,19 @@
 				ctx: {},
 				demoUrl: '',
 				camera: false,
+				duration: 0,
+				src: '',
+				baseUrl: 'http://129.211.60.18:3000/ivlog/api/public/',
 			}
 		},
 		onLoad(option) {
-			if (option) {
-				this.demoUrl = option.demoUrl
+			if (option.data) {
+				console.log(999999)
+				console.log(option.data)
+				const video = decodeURIComponent(JSON.parse(option.data))
+				this.src = `http://129.211.60.18:3000/ivlog/api/public/${video.videoName}`
 			}
 			this.ctx = wx.createCameraContext()
-			// console.log(this.ctx.startRecord)
 		},
 		methods: {
 			error(err) {
@@ -66,6 +71,8 @@
 				}).then(() => {
 					if (!this.ifStartRecord) {
 						console.log('点击开始录制视频按钮')
+						
+						this.duration = 0
 						this.ifStartRecord = true
 						let t1 = 0
 						let timeLoop = setInterval(() => {
@@ -122,10 +129,14 @@
 						
 						this.ifStartRecord = false
 						
+						this.duration = this.time
+						
 						this.time = 0
 						
+						this.timeStumb = 0
+						
 						uni.navigateTo({
-							url: `/pages/checkVideo/index?tempVideoPath=${this.tempVideoPath}&demoUrl=${this.demoUrl}`
+							url: `/pages/checkVideo/index?tempVideoPath=${this.tempVideoPath}&demoUrl=${this.demoUrl}&duration=${this.duration}`
 						})
 					},
 					fail: (e) => {

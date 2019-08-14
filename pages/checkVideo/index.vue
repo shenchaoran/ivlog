@@ -69,7 +69,8 @@
 				ifMusicListShow: false,
 				ifMusicListHide: false,
 				currents:[],
-				musicId: ''
+				musicId: '',
+				duration: 0,
 			}
 		},
 		
@@ -78,6 +79,7 @@
 				console.log(option)
 				this.tempVideoPath = option.tempVideoPath
 				this.demoUrl = option.demoUrl
+				this.duration = option.duration
 			}
 			api.getMusicList('musics').then(res => {
 				res.data.data.forEach(item => {
@@ -98,8 +100,8 @@
 			handleSelectMusic(id) {
 				console.log(id)
 				this.musicId = id
-				this.ifMusicListShow = true
-				this.ifMusicListHide = false
+				this.ifMusicListShow = false
+				this.ifMusicListHide = true
 			},
 			handleTap() {
 				if (this.ifMusicListShow) {
@@ -114,8 +116,9 @@
 			},
 			
 			handleResetShoot() {
-				uni.navigateTo({
-					url:'/pages/shoot/index?demoUrl=${demoUrl}'
+				console.log(9876)
+				uni.navigateBack({
+					url:`pages/shoot/index?demoUrl=${this.demoUrl}`
 				})
 			},
 			
@@ -132,10 +135,17 @@
 							openid: 'oxLxH47TuWWQlPyR9Jz1MLVdq3Ek',
 							desc: '',
 							avatar: 'gyuefgwyuefwgyuefwgyufewgyuew',
+							startTime: 0,
+							duration: this.duration,
+							musicId: this.musicId
 						},
 						success: (uploadFileRes) => {
 							console.log('上传成功')
-							console.log(uploadFileRes);
+							console.log(uploadFileRes)
+							uni.navigateTo({
+								url: 'pages/my/index'
+							})
+							
 						},
 						fail(err) {
 							console.log('出错了')
