@@ -70,9 +70,6 @@
 			console.log("当前相机摄像头为:", this.device ? "后置" : "前置");
 		},
 		handleUpload() {
-			console.log(8888)
-			console.log(this.tempVideoPath)
-			console.log(8888)
 			if (this.tempVideoPath) {
 				const url =  'http://129.211.60.18:3000/ivlog/api/sample'
 				console.log('调用上传函数了')
@@ -83,36 +80,16 @@
 					name: 'video',
 					formData:{},
 					success: (uploadFileRes) => {
-						console.log(uploadFileRes.data);
+						console.log(uploadFileRes.data.data.videoList);
+						let data = encodeURIComponent(JSON.stringify(uploadFileRes.data.data.videoList))
+						uni.navigateTo({
+							url: `pages/my/index?data=${data}`
+						})
 					},
 					fail(err) {
 						console.log(err)
 					}
 				})
-				
-				// api.uploadFile(url, {
-				// 	name: 'video',
-				// 	video: this.tempVideoPath
-				// })
-				// uploadFile(url, this.tempThumbPath, 'tempThumbPath')
-				// .then(r => {
-				// 	console.log('上传成功')
-				// 	console.log(r)
-				// 	uni.navicatTo({
-				// 		url: `pages/shoot/index?demoUrl=${r.demourl}`
-				// 	})
-				// })
-				// .then(r => {
-				// 	console.log('上传成功')
-				// 	console.log(r)
-				// 	uni.navicatTo({
-				// 		url: `pages/shoot/index?demoUrl=${r.demourl}`
-				// 	})
-				// })
-				// .catch(e => {
-				// 	console.log('上传失败')
-				// 	console.log(e)
-				// })	
 			} else {
 				console.log(this.ifNotice)
 				this.ifNotice = true
